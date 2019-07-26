@@ -1,0 +1,24 @@
+apiVersion: v1 # 指定使用 v1 版本 api
+kind: Pod # 指定類型為 pod
+metadata:
+  name: mongodb # 指定 pod 名稱為 mongodb
+  labels:
+    app: mongodb    # 替 pod 打上 app:mongodb 的標記
+spec:               # 規格描述
+  containers:       # 描述容器
+  - name: mongodb   # 將容器命名為 mongodb
+    image: mongo    # 使用 mongo 映像黨
+    ports:
+      - containerPort: 27017 # mongo 預設 port 為 27017
+---
+apiVersion: v1        # 指定使用 v1 版本 api
+kind: Service         # 指定類型為 pod
+metadata:
+  name: mongodb-svc   # 指定 Service 名稱為 mongo-svc
+spec:                 # 描述規格
+  type: ClusterIP     # 只需要叢集內部存取，使用 ClusterIP
+  selector:
+    app: mongodb      # 綁定 label 為 app:mongodb 的 pod
+  ports:
+    - protocol: TCP
+      port: 27017
