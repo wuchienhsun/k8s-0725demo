@@ -3,6 +3,7 @@
 # Declare variables to be passed into your templates.
 env:
   envtest: testthek8senvsetting
+
 replicaCount: 3
 
 image:
