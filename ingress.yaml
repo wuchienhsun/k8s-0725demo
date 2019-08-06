@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: appworks-demo
+spec:
+  rules:
+  - host: test.com
+    http:
+      paths:
+      - backend: 
+          serviceName: appworks-demo-svc
+          servicePort: 80

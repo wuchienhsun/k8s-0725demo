@@ -1,0 +1,15 @@
+{{- if .Values.ingress.enabled -}}
+{{- $fullName := include "helm-demo.fullname" . -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: {{ $fullName  }}
+spec:
+    rules:
+    - host: {{ .Values.ingress.hosts }}
+      http:
+        paths:
+          - backend:
+              serviceName: {{ $fullName }}
+              servicePort: 80
+{{- end }}

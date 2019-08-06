@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "helm-demo.fullname" . }}-config
+  labels:
+    app: {{ include "helm-demo.name" . }}    
+data:
+  envtest: {{ required ".env.envtest entry required!" .Values.env.envtest }}

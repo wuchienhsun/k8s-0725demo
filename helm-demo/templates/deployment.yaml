@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1  # v1 並無支援 Deployment 物件
+kind: Deployment                # 指定類型為 Delopyment
+metadata:
+    name: {{ include "helm-demo.fullname" . }}         # 指定 deploy 名稱為 appworks-demo
+spec:
+  replicas: {{ .Values.replicaCount }}                   # 我只想開一台 pod 
+  template:
+    metadata:
+      labels:
+        app: {{ include "helm-demo.name" . }}
+    spec:
+      containers:
+      - name: {{ include "helm-demo.fullname" . }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        envFrom:
+            - configMapRef:
+                name: "{{ include "helm-demo.fullname" . }}-config"
+        env:
+        - name: SERVER_PORT
+          value: "80"
+        - name: DB_SERVER
+          value: mongodb-svc
+        ports:
+        - containerPort: 80

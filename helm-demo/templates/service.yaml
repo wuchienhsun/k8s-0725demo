@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "helm-demo.fullname" . }}
+spec: 
+  type: {{ .Values.service.type}}              # 叢集外部存取
+  selector:
+    app: {{ include "helm-demo.name" . }}        # 綁定 labels 為 app:appworks-demo 的 pod
+  ports:
+    - protocol: TCP
+      port: 80

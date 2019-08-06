@@ -6,7 +6,7 @@ spec:
   replicas: 1                   # 我只想開一台 pod 
   template:
     metadata:
-      labels: 
+      labels:
         app: appworks-demo
     spec:
       containers:
