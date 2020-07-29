@@ -6,7 +6,7 @@
 
 # k8s Usage
  ``` 
- $ kubectl apply -f mongo.yaml
+ $ kubectl apply -f mongodb.yaml
 
  $ kubectl apply -f demo.yaml
 

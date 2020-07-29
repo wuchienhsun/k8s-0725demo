@@ -1,16 +1,16 @@
 apiVersion: extensions/v1beta1  # v1 並無支援 Deployment 物件
 kind: Deployment                # 指定類型為 Delopyment
 metadata:
-    name: appworks-demo         # 指定 deploy 名稱為 appworks-demo
+    name: demo         # 指定 deploy 名稱為 appworks-demo
 spec:
   replicas: 1                   # 我只想開一台 pod 
   template:
     metadata:
       labels:
-        app: appworks-demo
+        app: demo
     spec:
       containers:
-      - name: appworks-demo
+      - name: demo
         image: wuchienhsin01/k8s-demo
         env:
         - name: SERVER_PORT
@@ -24,11 +24,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: appworks-demo-svc
+  name: demo-svc
 spec: 
   type: NodePort              # 叢集外部存取
   selector:
-    app: appworks-demo        # 綁定 labels 為 app:appworks-demo 的 pod
+    app: demo        # 綁定 labels 為 app:appworks-demo 的 pod
   ports:
     - protocol: TCP
       port: 80
